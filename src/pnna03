@@ -1,0 +1,94 @@
+// Ruta al archivo CSV (ajusta según ubicación)
+const csvUrl = "data/proyectos.csv";
+
+const estadoColor = {
+  "Completado": "#4CAF50",
+  "En progreso": "#FFC107",
+  "Stand by": "#F44336"
+};
+
+d3.csv(csvUrl).then(data => {
+  data.forEach(d => {
+    d.AvancePlan = +d.AvancePlan;
+    d.AvanceReal = +d.AvanceReal;
+  });
+
+  const table = d3.select("#dashboard").append("table").attr("class", "mi-tabla");
+  const thead = table.append("thead");
+  const tbody = table.append("tbody");
+
+  const headers = ["Proyecto", "Avance según plan", "Avance real", "Estado actual", "Observaciones", "Avance gráfico"];
+
+  thead.append("tr")
+    .selectAll("th")
+    .data(headers)
+    .enter()
+    .append("th")
+    .text(d => d);
+
+  const rows = tbody.selectAll("tr")
+    .data(data)
+    .enter()
+    .append("tr");
+
+  rows.selectAll("td")
+    .data(d => [
+      d.Proyecto,
+      d.AvancePlan,
+      d.AvanceReal,
+      d.EstadoActual,
+      d.Observaciones,
+      null
+    ])
+    .enter()
+    .append("td")
+    .each(function(d, i) {
+      if (i === 3) {
+        d3.select(this)
+          .style("background", estadoColor[d] || "#eee")
+          .style("color", "#222")
+          .text(d);
+      } else if (i === 5) {
+        const rowData = d3.select(this.parentNode).datum();
+        const plan = +rowData.AvancePlan;
+        const real = +rowData.AvanceReal;
+        const pieData = [
+          { label: "Plan", value: plan },
+          { label: "Real", value: real }
+        ];
+        const width = 44, height = 44, radius = 18;
+        const pie = d3.pie().value(d => d.value);
+        const arc = d3.arc().innerRadius(0).outerRadius(radius);
+        const color = d3.scaleOrdinal().domain(["Plan", "Real"]).range(["#90caf9", "#1976d2"]);
+
+        const svg = d3.select(this).append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", `translate(${width/2},${height/2})`);
+
+        svg.selectAll("path")
+          .data(pie(pieData))
+          .enter()
+          .append("path")
+          .attr("d", arc)
+          .attr("fill", d => color(d.data.label));
+
+        svg.selectAll("text")
+          .data(pie(pieData))
+          .enter()
+          .append("text")
+          .attr("transform", d => `translate(${arc.centroid(d)})`)
+          .attr("class", "pie-label")
+          .text(d => d.data.value > 0 ? d.data.value + "%" : "");
+      } else {
+        d3.select(this).text(typeof d === "number" ? `${d}%` : d);
+      }
+    });
+
+  // Aquí continúa el código para el gráfico de barras (igual que antes)
+  // ...
+}).catch(error => {
+  d3.select("#dashboard").append("p").text("Error cargando datos: " + error);
+  console.error(error);
+});
