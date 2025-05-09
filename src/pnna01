@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard de Proyectos con D3.js</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; }
+    .mi-tabla {
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background: #fff;
+      box-shadow: 0 2px 8px #0002;
+      width: 100%;
+      max-width: 900px;
+    }
+    .mi-tabla th, .mi-tabla td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: center;
+      font-size: 15px;
+    }
+    .mi-tabla th {
+      background: #1976d2;
+      color: #fff;
+    }
+    .pie-label {
+      font-size: 8px;
+      text-anchor: middle;
+      fill: #333;
+    }
+    .legend {
+      font-size: 12px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Dashboard de Proyectos</h2>
+  <div id="dashboard"></div>
+  <script>
+    // Datos de la tabla
+    const tabla = [
+      ["Proyecto", "Avance según plan", "Avance real", "Estado actual", "Observaciones"],
+      ["ONR AOP 08", 60, 50, "En progreso", "Observacion a"],
+      ["ONR ATM 23", 100, 0, "Stand by", "Observacion ab"],
+      ["ONR CNS 01", 100, 100, "Completado", "Observacion c"]
+    ];
+
+    // Colores para los estados
+    const estadoColor = {
+      "Completado": "#4CAF50",   // verde
+      "En progreso": "#FFC107",  // amarillo
+      "Stand by": "#F44336"      // rojo
+    };
+
+    // Crear la tabla
+    const table = d3.select("#dashboard").append("table").attr("class", "mi-tabla");
+    const thead = table.append("thead");
+    const tbody = table.append("tbody");
+
+    // Encabezados
+    thead.append("tr")
+      .selectAll("th")
+      .data(tabla[0].concat(["Avance gráfico"]))
+      .enter()
+      .append("th")
+      .text(d => d);
+
+    // Filas de datos
+    const rows = tbody.selectAll("tr")
+      .data(tabla.slice(1))
+      .enter()
+      .append("tr");
+
+    // Celdas de datos
+    rows.selectAll("td")
+      .data(d => d.concat([null])) // Añadimos columna extra para el gráfico
+      .enter()
+      .append("td")
+      .each(function(d, i) {
+        // Estado con color
+        if (i === 3) {
+          d3.select(this)
+            .style("background", estadoColor[d] || "#eee")
+            .style("color", "#222")
+            .text(d);
+        }
+        // Gráfico circular
+        else if (i === 5) {
+          const row = d3.select(this);
+          const plan = +d3.select(this.parentNode).datum()[1];
+          const real = +d3.select(this.parentNode).datum()[2];
+          const pieData = [
+            { label: "Plan", value: plan },
+            { label: "Real", value: real }
+          ];
+          const width = 44, height = 44, radius = 18;
+          const pie = d3.pie().value(d => d.value);
+          const arc = d3.arc().innerRadius(0).outerRadius(radius);
+          const color = d3.scaleOrdinal().domain(["Plan", "Real"]).range(["#90caf9", "#1976d2"]);
+
+          const svg = row.append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", `translate(${width/2},${height/2})`);
+
+          svg.selectAll("path")
+            .data(pie(pieData))
+            .enter()
+            .append("path")
+            .attr("d", arc)
+            .attr("fill", d => color(d.data.label));
+
+          // Etiquetas % en el centro de cada sector
+          svg.selectAll("text")
+            .data(pie(pieData))
+            .enter()
+            .append("text")
+            .attr("transform", d => `translate(${arc.centroid(d)})`)
+            .attr("class", "pie-label")
+            .text(d => d.data.value > 0 ? d.data.value + "%" : "");
+        }
+        // Otras celdas normales
+        else if (i !== 5) {
+          d3.select(this).text(typeof d === "number" ? `${d}%` : d);
+        }
+      });
+
+    // Leyenda para los pie charts (opcional)
+    d3.select("#dashboard")
+      .append("div")
+      .attr("class", "legend")
+      .html(`
+        <span style="display:inline-block;width:14px;height:14px;background:#90caf9;border-radius:2px;margin-right:3px;"></span>Plan
+        <span style="display:inline-block;width:14px;height:14px;background:#1976d2;border-radius:2px;margin-left:15px;margin-right:3px;"></span>Real
+      `);
+
+    // Diagrama de barras inferior
+    const barWidth = 350, barHeight = 180;
+    const dataBar = tabla.slice(1).map(d => ({
+      proyecto: d[0],
+      avance: d[2]
+    }));
+
+    const x = d3.scaleBand()
+      .domain(dataBar.map(d => d.proyecto))
+      .range([0, barWidth])
+      .padding(0.2);
+
+    const y = d3.scaleLinear()
+      .domain([0, 100])
+      .range([barHeight, 0]);
+
+    const svgBar = d3.select("#dashboard")
+      .append("svg")
+      .attr("width", barWidth + 70)
+      .attr("height", barHeight + 60)
+      .append("g")
+      .attr("transform", "translate(50,30)");
+
+    // Eje X
+    svgBar.append("g")
+      .attr("transform", `translate(0,${barHeight})`)
+      .call(d3.axisBottom(x));
+
+    // Eje Y
+    svgBar.append("g")
+      .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"));
+
+    // Barras
+    svgBar.selectAll(".bar")
+      .data(dataBar)
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("x", d => x(d.proyecto))
+      .attr("y", d => y(d.avance))
+      .attr("width", x.bandwidth())
+      .attr("height", d => barHeight - y(d.avance))
+      .attr("fill", "#1976d2");
+
+    // Etiquetas encima de cada barra
+    svgBar.selectAll(".bar-label")
+      .data(dataBar)
+      .enter()
+      .append("text")
+      .attr("class", "bar-label")
+      .attr("x", d => x(d.proyecto) + x.bandwidth()/2)
+      .attr("y", d => y(d.avance) - 5)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#333")
+      .attr("font-size", 13)
+      .text(d => d.avance + "%");
+
+    // Título del gráfico de barras
+    svgBar.append("text")
+      .attr("x", barWidth/2)
+      .attr("y", -10)
+      .attr("text-anchor", "middle")
+      .attr("font-size", 16)
+      .attr("fill", "#1976d2")
+      .text("Avance Real por Proyecto");
+
+  </script>
+</body>
+</html>
