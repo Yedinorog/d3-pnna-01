@@ -5,14 +5,14 @@
   <title>Dashboard de Proyectos con D3.js</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; }
+    body { font-family: Segoe UI Symbol, Segoe UI Symbol; background: #f5f5f5; }
     .mi-tabla {
       border-collapse: collapse;
       margin-bottom: 30px;
       background: #fff;
       box-shadow: 0 2px 8px #0002;
       width: 100%;
-      max-width: 900px;
+      max-width: 1500px;
     }
     .mi-tabla th, .mi-tabla td {
       border: 1px solid #ccc;
@@ -21,30 +21,77 @@
       font-size: 15px;
     }
     .mi-tabla th {
-      background: #1976d2;
+      background: #512b99;
       color: #fff;
     }
-    .pie-label {
-      font-size: 8px;
-      text-anchor: middle;
-      fill: #333;
+    .progress-container {
+      width: 100px;
+      height: 20px;
+      background: #f0f0f0;
+      position: relative;
+      margin: 0 auto;
     }
-    .legend {
+    .progress-plan {
+      height: 100%;
+      background: #90caf9;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .progress-real {
+      height: 100%;
+      background: #1976d2;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .progress-label {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      line-height: 20px;
       font-size: 12px;
-      margin-top: 8px;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <h2>Dashboard de Proyectos</h2>
+  <h2>Tablero de Control PNNA</h2>
   <div id="dashboard"></div>
   <script>
     // Datos de la tabla
     const tabla = [
-      ["Proyecto", "Avance según plan", "Avance real", "Estado actual", "Observaciones"],
-      ["ONR AOP 08", 60, 50, "En progreso", "Observacion a"],
-      ["ONR ATM 23", 100, 0, "Stand by", "Observacion ab"],
-      ["ONR CNS 01", 100, 100, "Completado", "Observacion c"]
+      ["ONR","Descripción","Fecha I.","Estado actual","Avance según plan","Avance real","Observaciones"],
+      ["AOP 02","SPJC: A-SMGCS","2023","En progreso","100","95","En actualización de procedimientos"],
+      ["AOP 08","SPZO: ACIS","2022","En progreso","100","48","Lectura y validación de datos"],
+      ["AOP 09","SPZO: Integracion aeródromo con ATM","2022","En progreso","100","48","Lectura y validación de datos"],
+      ["AOP 11","Integracion seguridad operacional con ATS","2021","Completado","100","100","Mantenimiento plan integración"],
+      ["ATM 01","Aproximaciones PBN RNP APCH","2024","Completado","100","100","Mantenimiento procedimientos"],
+      ["ATM 02","Aproximaciones PBN RNP AR","2024","Completado","100","100","Mantenimiento procedimientos"],
+      ["ATM 03","Aprox. PBN en SID y STAR c/ avanzadas","2024","Completado","100","100","Mantenimiento procedimientos"],
+      ["ATM 04","Aprox. PBN en SID y STAR c/ avanzadas","2024","Completado","100","100","Mantenimiento procedimientos"],
+      ["ATM 11","SPJC: Operaciones simultaneas RWY","2025","En progreso","80","80","Desarrollo procedimientos y pruebas"],
+      ["ATM 12","SPIM: Espacio aéreo de ruta libre FRA","2023","Completado","100","100","Mantenimiento plan"],
+      ["ATM 23","Intercambio automático de comunicaciones ATS","2021","Completado","100","100","Mantenimiento lista de verificación"],
+      ["ATM 25","Alerta de Conflicto a Corto Plazo (STCA)","2023","Completado","100","100","Mantenimiento del plan"],
+      ["ATM 27","Advertencia de Altitud Mínima de Seguridad (MSAW)","2023","Completado","100","100","Mantenimiento del plan"],
+      ["ATM 28","Advertencia de proximidad de área (APW)","2023","Completado","100","100","Mantenimiento del plan"],
+      ["ATM 29","Vigilancia de la trayectoria de aproximación (APM)","2023","Completado","100","100","Mantenimiento del plan"],
+      ["ATM 31","CDM-ATFCM: Integración g. espacio a. c/ g. ATS","2021","Completado","100","100","Mantenimiento del plan"],
+      ["ATM 32","Actualizacion de vuelo en la red","2023","Completado","100","100","Mantenimiento del plan"],
+      ["ATM 34","Franjas horarias/ATFM e interfaz A-CDM","2023","Completado","100","100","Mantenimiento del plan"],
+      ["ATM 41","Descentralización del C. Control Area Lima","2023","Completado","100","100","Mantenimiento del plan"],
+      ["CNS 01","Vigilancia alterna con ADS-B espacio superior","2025","En progreso","100","29","Actualizacion Regulación"],
+      ["CNS 02","MLAT","2025","En progreso","100","5","Toma de datos su validación"],
+      ["CNS 05","AMHS","2021","En progreso","100","25","En planificación"],
+      ["CNS 07","CPDLC p/ espacio a. bajo control procedimientos","2026","Completado","90","100","Mantenimiento plan"],
+      ["CNS 08","ADS-C","2020","Completado","100","100","Mantenimiento plan"],
+      ["AIM 01","S. Calidad de Suministro AIP","2023","En progreso","100","50","Fuente de datos no actualizada"],
+      ["AIM 02","Suministro datos eAIP c/ AIXM","2023","En progreso","100","5","Sistemas no compatibles"],
+      ["AIM 03","Suministro datos terremno c/ AIXM","2024","En progreso","100","5","Sistemas no compatibles"],
+      ["AIM 04","Suministro datos obstaculos c/ AIXM","2024","En progreso","100","5","Sistemas no compatibles"],
+      ["AIM 05","Suministro datos cartografia c/ AIXM","2023","En progreso","100","5","Sistemas no compatibles"],
+      ["AIM 06","Suministro datos p/ procedimientos v. c/ AIXM","2024","En progreso","100","5","Sistemas no compatibles"],
     ];
 
     // Colores para los estados
@@ -86,62 +133,45 @@
             .style("color", "#222")
             .text(d);
         }
-        // Gráfico circular
-        else if (i === 5) {
+        // Gráfico de barras horizontales
+        else if (i === 7) {
           const row = d3.select(this);
-          const plan = +d3.select(this.parentNode).datum()[1];
-          const real = +d3.select(this.parentNode).datum()[2];
-          const pieData = [
-            { label: "Plan", value: plan },
-            { label: "Real", value: real }
-          ];
-          const width = 44, height = 44, radius = 18;
-          const pie = d3.pie().value(d => d.value);
-          const arc = d3.arc().innerRadius(0).outerRadius(radius);
-          const color = d3.scaleOrdinal().domain(["Plan", "Real"]).range(["#90caf9", "#1976d2"]);
-
-          const svg = row.append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", `translate(${width/2},${height/2})`);
-
-          svg.selectAll("path")
-            .data(pie(pieData))
-            .enter()
-            .append("path")
-            .attr("d", arc)
-            .attr("fill", d => color(d.data.label));
-
-          // Etiquetas % en el centro de cada sector
-          svg.selectAll("text")
-            .data(pie(pieData))
-            .enter()
-            .append("text")
-            .attr("transform", d => `translate(${arc.centroid(d)})`)
-            .attr("class", "pie-label")
-            .text(d => d.data.value > 0 ? d.data.value + "%" : "");
+          const plan = +d3.select(this.parentNode).datum()[4]; // Avance según plan (índice 4)
+          const real = +d3.select(this.parentNode).datum()[5]; // Avance real (índice 5)
+          
+          const container = row.append("div").attr("class", "progress-container");
+          
+          container.append("div")
+            .attr("class", "progress-plan")
+            .style("width", plan + "%");
+            
+          container.append("div")
+            .attr("class", "progress-real")
+            .style("width", real + "%");
+            
+          container.append("div")
+            .attr("class", "progress-label")
+            .text(real + "%");
+        }
+        // Mostrar el avance según plan (columna 4) con el símbolo de porcentaje
+        else if (i === 4) {
+          d3.select(this).text(d + "%");
+        }
+        // Mostrar el avance real (columna 5) con el símbolo de porcentaje
+        else if (i === 5) {
+          d3.select(this).text(d + "%");
         }
         // Otras celdas normales
-        else if (i !== 5) {
-          d3.select(this).text(typeof d === "number" ? `${d}%` : d);
+        else {
+          d3.select(this).text(d);
         }
       });
 
-    // Leyenda para los pie charts (opcional)
-    d3.select("#dashboard")
-      .append("div")
-      .attr("class", "legend")
-      .html(`
-        <span style="display:inline-block;width:14px;height:14px;background:#90caf9;border-radius:2px;margin-right:3px;"></span>Plan
-        <span style="display:inline-block;width:14px;height:14px;background:#1976d2;border-radius:2px;margin-left:15px;margin-right:3px;"></span>Real
-      `);
-
     // Diagrama de barras inferior
-    const barWidth = 350, barHeight = 180;
+    const barWidth = 1500, barHeight = 500;
     const dataBar = tabla.slice(1).map(d => ({
       proyecto: d[0],
-      avance: d[2]
+      avance: d[5] // Usar Avance real (índice 5)
     }));
 
     const x = d3.scaleBand()
@@ -153,17 +183,19 @@
       .domain([0, 100])
       .range([barHeight, 0]);
 
+// Aumentar el tamaño del SVG para acomodar las etiquetas rotadas
     const svgBar = d3.select("#dashboard")
       .append("svg")
-      .attr("width", barWidth + 70)
-      .attr("height", barHeight + 60)
+      .attr("width", barWidth + 100)   // Aumenté el ancho para las etiquetas
+      .attr("height", barHeight + 100)   // Aumenté la altura para las etiquetas
       .append("g")
-      .attr("transform", "translate(50,30)");
+      .attr("transform", "translate(60,30)");
 
     // Eje X
     svgBar.append("g")
       .attr("transform", `translate(0,${barHeight})`)
       .call(d3.axisBottom(x));
+
 
     // Eje Y
     svgBar.append("g")
@@ -191,7 +223,7 @@
       .attr("y", d => y(d.avance) - 5)
       .attr("text-anchor", "middle")
       .attr("fill", "#333")
-      .attr("font-size", 13)
+      .attr("font-size", 8)
       .text(d => d.avance + "%");
 
     // Título del gráfico de barras
@@ -201,8 +233,9 @@
       .attr("text-anchor", "middle")
       .attr("font-size", 16)
       .attr("fill", "#1976d2")
-      .text("Avance Real por Proyecto");
+      .text("Avance Real por ONR");
 
   </script>
 </body>
 </html>
+
