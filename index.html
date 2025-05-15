@@ -2,10 +2,28 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Tablero de Control PNNA</title>
+  <title>Dashboard de Proyectos con D3.js</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     body { font-family: Segoe UI Symbol, Segoe UI Symbol; background: #f5f5f5; }
+
+    .summary-container {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+    }
+    .summary-chart {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #0002;
+      text-align: center;
+    }
+    .chart-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
     .mi-tabla {
       border-collapse: collapse;
       margin-bottom: 30px;
@@ -57,9 +75,19 @@
 </head>
 <body>
   <h2>Tablero de Control PNNA</h2>
+
+  <!-- Contenedor para los gráficos de resumen -->
+  <div class="summary-container">
+    <div id="avance-general-chart" class="summary-chart"></div>
+    <div id="estados-chart" class="summary-chart"></div>
+  </div>
+
   <div id="dashboard"></div>
   <script>
+
+    // ============================================
     // Datos de la tabla
+    // ============================================
     const tabla = [
       ["ONR","Descripción","Fecha I.","Estado actual","Avance según plan","Avance real","Observaciones"],
       ["AOP 02","SPJC: A-SMGCS","2023","En progreso","100","95","En actualización de procedimientos"],
@@ -94,6 +122,132 @@
       ["AIM 06","Suministro datos p/ procedimientos v. c/ AIXM","2024","En progreso","100","5","Sistemas no compatibles"],
     ];
 
+    // ============================================
+    // CÁLCULO DE DATOS PARA LOS GRÁFICOS CIRCULARES
+    // ============================================
+
+    // 1. Calcular el avance general promedio (promedio ponderado)
+    let totalAvance = 0;
+    let totalProyectos = 0;
+    
+    tabla.slice(1).forEach(row => {
+      const avance = parseFloat(row[5]); // Avance real (columna 5)
+      if (!isNaN(avance)) {
+        totalAvance += avance;
+        totalProyectos++;
+      }
+    });
+    
+    const avancePromedio = totalProyectos > 0 ? (totalAvance / totalProyectos) : 0;
+    const avancePendiente = 100 - avancePromedio;
+    
+    // 2. Calcular distribución por estados
+    const conteoEstados = { completados: 0, enProgreso: 0, retrasados: 0 };
+    
+    tabla.slice(1).forEach(row => {
+      const estado = row[3].toLowerCase(); // Estado actual (columna 3)
+      
+      if (estado.includes("completado")) {
+        conteoEstados.completados++;
+      } else if (estado.includes("progreso")) {
+        conteoEstados.enProgreso++;
+      } else if (estado.includes("retrasado") || estado.includes("stand by")) {
+        conteoEstados.retrasados++;
+      }
+    });
+    
+    const totalProyectosEstado = conteoEstados.completados + conteoEstados.enProgreso + conteoEstados.retrasados;
+
+    // ============================================
+    // Código para los nuevos gráficos circulares
+    // ============================================
+    
+    // Datos para los gráficos (ahora calculados automáticamente)
+
+    const avanceGeneralData = [
+      { label: "Avanzado", value: avancePromedio, color: "#4CAF50" },
+      { label: "Pendiente", value: avancePendiente, color: "#F44336" }
+    ];
+    
+    const estadosData = [
+      { label: "Completados", value: conteoEstados.completados, color: "#4CAF50" },
+      { label: "En progreso", value: conteoEstados.enProgreso, color: "#FFC107" },
+      { label: "Retrasados", value: conteoEstados.retrasados, color: "#F44336" }
+    ];
+        
+    // Función para crear gráficos circulares
+    function createDonutChart(containerId, data, title, showPercentage = false, decimals=0, width=150, height=150 ) {
+      const radius = Math.min(width, height) / 2;
+      const svg = d3.select(`#${containerId}`)
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", `translate(${width/2},${height/2})`);
+      
+      // Añadir título
+      d3.select(`#${containerId}`)
+        .insert("div", ":first-child")
+        .attr("class", "chart-title")
+        .text(title);
+      
+      const pie = d3.pie()
+        .value(d => d.value)
+        .sort(null);
+      
+      const arc = d3.arc()
+        .innerRadius(radius * 0.6) // Hacemos un donut chart (hueco en el centro)
+        .outerRadius(radius * 0.9);
+      
+      const arcs = svg.selectAll(".arc")
+        .data(pie(data))
+        .enter()
+        .append("g")
+        .attr("class", "arc");
+      
+      arcs.append("path")
+        .attr("d", arc)
+        .attr("fill", d => d.data.color)
+        .attr("stroke", "white")
+        .style("stroke-width", "2px");
+      
+      // Añadir texto en el centro
+      svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("dy", ".3em")
+        .style("font-size", "20px")
+        .style("font-weight", "bold")
+        .text(data[0].label === "Avanzado" 
+          ? `${avancePromedio.toFixed(decimals)}%` 
+          : `${conteoEstados.completados}/${totalProyectosEstado}`);
+      
+      // Leyenda
+      const legend = d3.select(`#${containerId}`)
+        .append("div")
+        .style("display", "flex")
+        .style("flex-wrap", "wrap")
+        .style("justify-content", "center")
+        .style("margin-top", "8px");
+
+     
+      data.forEach(d => {
+        if(d.value > 0) { // Solo mostramos items con valor
+    	  const formattedValue = showPercentage ? d.value.toFixed(decimals) + "%" : d.value;
+          legend.append("div")
+            .html(`
+              <div style="display:flex; align-items:center; margin:2px 5px;">
+                <div style="width:12px;height:12px;background:${d.color};margin-right:5px;"></div>
+                ${d.label}: ${formattedValue}
+              </div>
+            `);
+        }
+      });
+    }
+    
+    // Crear los gráficos
+    createDonutChart("avance-general-chart", avanceGeneralData, "Avance General Promedio",true ,0);
+    createDonutChart("estados-chart", estadosData, "Distribución por Estado",false ,0);
+    
     // Colores para los estados
     const estadoColor = {
       "Completado": "#4CAF50",   // verde
@@ -168,7 +322,7 @@
       });
 
     // Diagrama de barras inferior
-    const barWidth = 1500, barHeight = 500;
+    const barWidth = 1300, barHeight = 250;
     const dataBar = tabla.slice(1).map(d => ({
       proyecto: d[0],
       avance: d[5] // Usar Avance real (índice 5)
@@ -177,13 +331,13 @@
     const x = d3.scaleBand()
       .domain(dataBar.map(d => d.proyecto))
       .range([0, barWidth])
-      .padding(0.2);
+      .padding(0.5);
 
     const y = d3.scaleLinear()
       .domain([0, 100])
       .range([barHeight, 0]);
 
-// Aumentar el tamaño del SVG para acomodar las etiquetas rotadas
+    // Aumentar el tamaño del SVG para acomodar las etiquetas rotadas
     const svgBar = d3.select("#dashboard")
       .append("svg")
       .attr("width", barWidth + 100)   // Aumenté el ancho para las etiquetas
@@ -195,7 +349,6 @@
     svgBar.append("g")
       .attr("transform", `translate(0,${barHeight})`)
       .call(d3.axisBottom(x));
-
 
     // Eje Y
     svgBar.append("g")
