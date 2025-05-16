@@ -30,7 +30,7 @@
       background: #fff;
       box-shadow: 0 2px 8px #0002;
       width: 100%;
-      max-width: 1500px;
+      max-width: 1200px;
     }
     .mi-tabla th, .mi-tabla td {
       border: 1px solid #ccc;
@@ -322,7 +322,7 @@
       });
 
     // Diagrama de barras inferior
-    const barWidth = 1300, barHeight = 250;
+    const barWidth = 1000, barHeight = 300;
     const dataBar = tabla.slice(1).map(d => ({
       proyecto: d[0],
       avance: d[5] // Usar Avance real (índice 5)
@@ -340,15 +340,21 @@
     // Aumentar el tamaño del SVG para acomodar las etiquetas rotadas
     const svgBar = d3.select("#dashboard")
       .append("svg")
-      .attr("width", barWidth + 100)   // Aumenté el ancho para las etiquetas
-      .attr("height", barHeight + 100)   // Aumenté la altura para las etiquetas
+      .attr("width", barWidth + 200)   // Aumenté el ancho para las etiquetas
+      .attr("height", barHeight + 350)   // Aumenté la altura para las etiquetas
       .append("g")
-      .attr("transform", "translate(60,30)");
+      .attr("transform", "translate(100,100)");
 
     // Eje X
     svgBar.append("g")
       .attr("transform", `translate(0,${barHeight})`)
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .attr("transform", "rotate(90)")
+      .attr("text-anchor", "start")
+      .attr("dx", "0.8em")      // Ajuste horizontal
+      .attr("dy", "0.2em")     // Ajuste vertical
+      .style("font-size", "10px");
 
     // Eje Y
     svgBar.append("g")
@@ -376,14 +382,15 @@
       .attr("y", d => y(d.avance) - 5)
       .attr("text-anchor", "middle")
       .attr("fill", "#333")
-      .attr("font-size", 8)
+      .attr("font-size", 10)
       .text(d => d.avance + "%");
 
     // Título del gráfico de barras
     svgBar.append("text")
       .attr("x", barWidth/2)
-      .attr("y", -10)
+      .attr("y", -30)
       .attr("text-anchor", "middle")
+      .attr("font-weight", "bold")
       .attr("font-size", 16)
       .attr("fill", "#1976d2")
       .text("Avance Real por ONR");
