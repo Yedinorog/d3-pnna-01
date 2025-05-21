@@ -176,21 +176,21 @@ fetch('data.json')
   .then(data => {
     // Reconstruye el array en el formato original (opcional, si necesitas mantener compatibilidad)
     tabla = [
-      ["ONR", "Descripción", "Fec. I.", "Estado actual", "Av. planeado", "Avance real", "Observaciones"],
-      ...data.proyectos.map(proyecto => [
+      ["ONR", "Descripción", "Fecha I.", "Estado actual", "Avance según plan", "Avance real", "Observaciones"],
+      ...data.map(proyecto => [
         proyecto.ONR,
-        proyecto["Descripción"],
-        proyecto["Fec. I."],
+        proyecto["Descripción"] || "",
+        proyecto["Fecha I."] || "",
         proyecto["Estado actual"],
-        proyecto["Av. planeado"],
-        proyecto["Avance real"],
-        proyecto.Observaciones
+        proyecto["Avance según plan"] || 0,
+        proyecto["Avance real"] || 0,
+        proyecto.Observaciones || ""
       ])
     ];
      // Llama a las funciones que dependen de 'tabla' aquí
     initDashboard();
   })
-  .catch(error => console.error("Error cargando los datos:", error));
+  .catch(error => console.error("Error cargando los datos:", error) );
 
     // ============================================
     // CORE: COORDINA, INICIALIZA Y RENDERIZA EL DASHBOARD
@@ -250,7 +250,7 @@ function initDashboard() {
         
     // Crear los gráficos
     createDonutChart("avance-general-chart", avanceGeneralData, "Avance General Promedio",true ,0 ,`${avancePromedio.toFixed(0)}%`);
-    createDonutChart("estados-chart", estadosData, "Distribución por Estado",false ,0 , `${conteoEstados.completados}/${totalProyectosEstado);
+    createDonutChart("estados-chart", estadosData, "Distribución por Estado",false ,0 , `${conteoEstados.completados}/${totalProyectosEstado}`);
 
     // Crear la tabla
     const table = d3.select("#dashboard").append("table").attr("class", "mi-tabla");
