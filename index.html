@@ -83,53 +83,126 @@
   </div>
 
   <div id="dashboard"></div>
+
   <script>
+// ============================================
+// 1. VARIABLES GLOBALES CONSTANTES (quedan FUERA de initDashboard)
+// ============================================
+// Colores para los estados
+    const estadoColor = {
+      "Completado": "#4CAF50",   // verde
+      "En progreso": "#FFC107",  // amarillo
+      "Stand by": "#F44336"      // rojo
+    };
+// ============================================
+// 2. Función para crear gráficos circulares. Modificada para no usar variables externas.
+// ============================================
+    function createDonutChart(containerId, data, title, showPercentage = false, decimals=0, centerText = "", width=150, height=150  ) {
+      const radius = Math.min(width, height) / 2;
+      const svg = d3.select(`#${containerId}`)
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", `translate(${width/2},${height/2})`);
+      
+      // Añadir título
+      d3.select(`#${containerId}`)
+        .insert("div", ":first-child")
+        .attr("class", "chart-title")
+        .text(title);
+      
+      const pie = d3.pie()
+        .value(d => d.value)
+        .sort(null);
+      
+      const arc = d3.arc()
+        .innerRadius(radius * 0.6) // Hacemos un donut chart (hueco en el centro)
+        .outerRadius(radius * 0.9);
+      
+      const arcs = svg.selectAll(".arc")
+        .data(pie(data))
+        .enter()
+        .append("g")
+        .attr("class", "arc");
+      
+      arcs.append("path")
+        .attr("d", arc)
+        .attr("fill", d => d.data.color)
+        .attr("stroke", "white")
+        .style("stroke-width", "2px");
+      
+      // Añadir texto en el centro (ahora se recibe txt como parametro)
+      svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("dy", ".3em")
+        .style("font-size", "20px")
+        .style("font-weight", "bold")
+	.text(centerText);
+        //.text(data[0].label === "Avanzado" 
+        //  ? `${avancePromedio.toFixed(decimals)}%` 
+        //  : `${conteoEstados.completados}/${totalProyectosEstado}`);
+      
+      // Leyenda
+      const legend = d3.select(`#${containerId}`)
+        .append("div")
+        .style("display", "flex")
+        .style("flex-wrap", "wrap")
+        .style("justify-content", "center")
+        .style("margin-top", "8px");
 
-    // ============================================
-    // Datos de la tabla
-    // ============================================
-    const tabla = [
-      ["ONR","Descripción","Fec. I.","Estado actual","Av. planeado","Avance real","Observaciones"],
-      ["AOP 02","SPJC: A-SMGCS","2023","En progreso","100","95","En actualización de procedimientos"],
-      ["AOP 08","SPZO: ACIS","2022","En progreso","100","48","Lectura y validación de datos"],
-      ["AOP 09","SPZO: Integracion aeródromo con ATM","2022","En progreso","100","48","Lectura y validación de datos"],
-      ["AOP 11","Integracion seguridad operacional con ATS","2021","Completado","100","100","Mantenimiento plan integración"],
-      ["ATM 01","Aproximaciones PBN RNP APCH","2024","Completado","100","100","Mantenimiento procedimientos"],
-      ["ATM 02","Aproximaciones PBN RNP AR","2024","Completado","100","100","Mantenimiento procedimientos"],
-      ["ATM 03","Aprox. PBN en SID y STAR c/ avanzadas","2024","Completado","100","100","Mantenimiento procedimientos"],
-      ["ATM 04","Aprox. PBN en SID y STAR c/ avanzadas","2024","Completado","100","100","Mantenimiento procedimientos"],
-      ["ATM 11","SPJC: Operaciones simultaneas RWY","2025","En progreso","80","80","Desarrollo procedimientos y pruebas"],
-      ["ATM 12","SPIM: Espacio aéreo de ruta libre FRA","2023","Completado","100","100","Mantenimiento plan"],
-      ["ATM 23","Intercambio automático de comunicaciones ATS","2021","Completado","100","100","Mantenimiento lista de verificación"],
-      ["ATM 25","Alerta de Conflicto a Corto Plazo (STCA)","2023","Completado","100","100","Mantenimiento del plan"],
-      ["ATM 27","Advertencia de Altitud Mínima de Seguridad (MSAW)","2023","Completado","100","100","Mantenimiento del plan"],
-      ["ATM 28","Advertencia de proximidad de área (APW)","2023","Completado","100","100","Mantenimiento del plan"],
-      ["ATM 29","Vigilancia de la trayectoria de aproximación (APM)","2023","Completado","100","100","Mantenimiento del plan"],
-      ["ATM 31","CDM-ATFCM: Integración g. espacio a. c/ g. ATS","2021","Completado","100","100","Mantenimiento del plan"],
-      ["ATM 32","Actualizacion de vuelo en la red","2023","Completado","100","100","Mantenimiento del plan"],
-      ["ATM 34","Franjas horarias/ATFM e interfaz A-CDM","2023","Completado","100","100","Mantenimiento del plan"],
-      ["ATM 41","Descentralización del C. Control Area Lima","2023","Completado","100","100","Mantenimiento del plan"],
-      ["CNS 01","Vigilancia alterna con ADS-B espacio superior","2025","En progreso","100","29","Actualizacion Regulación"],
-      ["CNS 02","MLAT","2025","En progreso","100","5","Toma de datos su validación"],
-      ["CNS 05","AMHS","2021","En progreso","100","25","En planificación"],
-      ["CNS 07","CPDLC p/ espacio a. bajo control procedimientos","2026","Completado","90","100","Mantenimiento plan"],
-      ["CNS 08","ADS-C","2020","Completado","100","100","Mantenimiento plan"],
-      ["AIM 01","S. Calidad de Suministro AIP","2023","En progreso","100","50","Fuente de datos no actualizada"],
-      ["AIM 02","Suministro datos eAIP c/ AIXM","2023","En progreso","100","5","Sistemas no compatibles"],
-      ["AIM 03","Suministro datos terremno c/ AIXM","2024","En progreso","100","5","Sistemas no compatibles"],
-      ["AIM 04","Suministro datos obstaculos c/ AIXM","2024","En progreso","100","5","Sistemas no compatibles"],
-      ["AIM 05","Suministro datos cartografia c/ AIXM","2023","En progreso","100","5","Sistemas no compatibles"],
-      ["AIM 06","Suministro datos p/ procedimientos v. c/ AIXM","2024","En progreso","100","5","Sistemas no compatibles"],
+     
+      data.forEach(d => {
+        if(d.value > 0) { // Solo mostramos items con valor
+    	  const formattedValue = showPercentage ? d.value.toFixed(decimals) + "%" : d.value;
+          legend.append("div")
+            .html(`
+              <div style="display:flex; align-items:center; margin:2px 5px;">
+                <div style="width:12px;height:12px;background:${d.color};margin-right:5px;"></div>
+                ${d.label}: ${formattedValue}
+              </div>
+            `);
+        }
+      });
+    }
+// ============================================
+// Datos de la tabla
+// ============================================
+
+let tabla = [];
+
+fetch('data.json')
+  .then(response => response.json())
+  .then(data => {
+    // Reconstruye el array en el formato original (opcional, si necesitas mantener compatibilidad)
+    tabla = [
+      ["ONR", "Descripción", "Fec. I.", "Estado actual", "Av. planeado", "Avance real", "Observaciones"],
+      ...data.proyectos.map(proyecto => [
+        proyecto.ONR,
+        proyecto["Descripción"],
+        proyecto["Fec. I."],
+        proyecto["Estado actual"],
+        proyecto["Av. planeado"],
+        proyecto["Avance real"],
+        proyecto.Observaciones
+      ])
     ];
+     // Llama a las funciones que dependen de 'tabla' aquí
+    initDashboard();
+  })
+  .catch(error => console.error("Error cargando los datos:", error));
 
     // ============================================
-    // CÁLCULO DE DATOS PARA LOS GRÁFICOS CIRCULARES
+    // CORE: COORDINA, INICIALIZA Y RENDERIZA EL DASHBOARD
     // ============================================
+function initDashboard() {
+    // ---------------------------------------------
+    // CÁLCULO DE DATOS PARA LOS GRÁFICOS CIRCULARES
+    // ---------------------------------------------
 
     // 1. Calcular el avance general promedio (promedio ponderado)
     let totalAvance = 0;
     let totalProyectos = 0;
-    
     tabla.slice(1).forEach(row => {
       const avance = parseFloat(row[5]); // Avance real (columna 5)
       if (!isNaN(avance)) {
@@ -175,85 +248,9 @@
       { label: "Retrasados", value: conteoEstados.retrasados, color: "#F44336" }
     ];
         
-    // Función para crear gráficos circulares
-    function createDonutChart(containerId, data, title, showPercentage = false, decimals=0, width=150, height=150 ) {
-      const radius = Math.min(width, height) / 2;
-      const svg = d3.select(`#${containerId}`)
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", `translate(${width/2},${height/2})`);
-      
-      // Añadir título
-      d3.select(`#${containerId}`)
-        .insert("div", ":first-child")
-        .attr("class", "chart-title")
-        .text(title);
-      
-      const pie = d3.pie()
-        .value(d => d.value)
-        .sort(null);
-      
-      const arc = d3.arc()
-        .innerRadius(radius * 0.6) // Hacemos un donut chart (hueco en el centro)
-        .outerRadius(radius * 0.9);
-      
-      const arcs = svg.selectAll(".arc")
-        .data(pie(data))
-        .enter()
-        .append("g")
-        .attr("class", "arc");
-      
-      arcs.append("path")
-        .attr("d", arc)
-        .attr("fill", d => d.data.color)
-        .attr("stroke", "white")
-        .style("stroke-width", "2px");
-      
-      // Añadir texto en el centro
-      svg.append("text")
-        .attr("text-anchor", "middle")
-        .attr("dy", ".3em")
-        .style("font-size", "20px")
-        .style("font-weight", "bold")
-        .text(data[0].label === "Avanzado" 
-          ? `${avancePromedio.toFixed(decimals)}%` 
-          : `${conteoEstados.completados}/${totalProyectosEstado}`);
-      
-      // Leyenda
-      const legend = d3.select(`#${containerId}`)
-        .append("div")
-        .style("display", "flex")
-        .style("flex-wrap", "wrap")
-        .style("justify-content", "center")
-        .style("margin-top", "8px");
-
-     
-      data.forEach(d => {
-        if(d.value > 0) { // Solo mostramos items con valor
-    	  const formattedValue = showPercentage ? d.value.toFixed(decimals) + "%" : d.value;
-          legend.append("div")
-            .html(`
-              <div style="display:flex; align-items:center; margin:2px 5px;">
-                <div style="width:12px;height:12px;background:${d.color};margin-right:5px;"></div>
-                ${d.label}: ${formattedValue}
-              </div>
-            `);
-        }
-      });
-    }
-    
     // Crear los gráficos
-    createDonutChart("avance-general-chart", avanceGeneralData, "Avance General Promedio",true ,0);
-    createDonutChart("estados-chart", estadosData, "Distribución por Estado",false ,0);
-    
-    // Colores para los estados
-    const estadoColor = {
-      "Completado": "#4CAF50",   // verde
-      "En progreso": "#FFC107",  // amarillo
-      "Stand by": "#F44336"      // rojo
-    };
+    createDonutChart("avance-general-chart", avanceGeneralData, "Avance General Promedio",true ,0 ,`${avancePromedio.toFixed(0)}%`);
+    createDonutChart("estados-chart", estadosData, "Distribución por Estado",false ,0 , `${conteoEstados.completados}/${totalProyectosEstado);
 
     // Crear la tabla
     const table = d3.select("#dashboard").append("table").attr("class", "mi-tabla");
@@ -305,7 +302,10 @@
             
           container.append("div")
             .attr("class", "progress-label")
+	    .style("color", real > 45 ? "white" : "black")  // Blanco si > 50%, negro si no
+            .style("font-weight", "bold")
             .text(real + "%");
+  
         }
         // Mostrar el avance según plan (columna 4) con el símbolo de porcentaje
         else if (i === 4) {
@@ -394,7 +394,7 @@
       .attr("font-size", 16)
       .attr("fill", "#1976d2")
       .text("Avance Real por ONR");
-
+  }
   </script>
 </body>
 </html>
