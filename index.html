@@ -126,13 +126,12 @@
           
           // Convertir datos al formato de tabla
           const tabla = [
-            ["ONR", "Descripción", "Fecha I.", "Estado actual", "Avance según plan", "Avance real", "Observaciones"],
+            ["ONR", "Fecha I.", "Estado actual", "Avance según plan", "Avance real", "Observaciones"],
             ...data.map(proyecto => [
               proyecto.ONR || "N/A",
-              proyecto["Descripción"] || "",
-              proyecto["Fecha I."] || proyecto["Fec. I."] || "",
+              proyecto["Fecha I."] || "",
               proyecto["Estado actual"] || "Desconocido",
-              proyecto["Avance según plan"] || proyecto["Av. planeado"] || 0,
+              proyecto["Avance según plan"] || 0,
               proyecto["Avance real"] || 0,
               proyecto.Observaciones || ""
             ])
@@ -218,10 +217,10 @@
             .text(d);
         }
         // Gráfico de barras horizontales
-        else if (i === 7) {
+        else if (i === 6) {
           const row = d3.select(this);
-          const plan = +d3.select(this.parentNode).datum()[4]; // Avance según plan (índice 4)
-          const real = +d3.select(this.parentNode).datum()[5]; // Avance real (índice 5)
+          const plan = +d3.select(this.parentNode).datum()[3]; // Avance según plan (índice 4)
+          const real = +d3.select(this.parentNode).datum()[4]; // Avance real (índice 5)
           
           const container = row.append("div").attr("class", "progress-container");
           
@@ -241,11 +240,11 @@
   
         }
         // Mostrar el avance según plan (columna 4) con el símbolo de porcentaje
-        else if (i === 4) {
+        else if (i === 3) {
           d3.select(this).text(d + "%");
         }
         // Mostrar el avance real (columna 5) con el símbolo de porcentaje
-        else if (i === 5) {
+        else if (i === 4) {
           d3.select(this).text(d + "%");
         }
         // Otras celdas normales
@@ -258,7 +257,7 @@
     const barWidth = 1000, barHeight = 300;
     const dataBar = tabla.slice(1).map(d => ({
       proyecto: d[0],
-      avance: d[5] // Usar Avance real (índice 5)
+      avance: d[4] // Usar Avance real (índice 5)
     }));
 
     const x = d3.scaleBand()
