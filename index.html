@@ -17,20 +17,14 @@
     .progress-real { height: 100%; background: #1976d2; position: absolute; top: 0; left: 0; }
     .progress-label { position: absolute; width: 100%; text-align: center; line-height: 20px; font-size: 12px; color: #333; }
     .error-message { color: red; padding: 15px; background: #ffeeee; border: 1px solid red; margin: 20px; border-radius: 5px; }
-    .warning-message {
-      color: orange;
-      padding: 15px;
-      background: #fff8e6;
-      border: 1px solid orange;
-      margin: 20px;
-      border-radius: 5px;
-    }
+    .warning-message { color: orange; padding: 15px; background: #fff8e6; border: 1px solid orange; margin: 20px; border-radius: 5px; }
   </style>
 </head>
 <body>
   <h2>Tablero de Control PNNA</h2>
   <div id="error-container"></div>
   <div id="warning-container"></div>
+
   <!-- Contenedor para los gráficos de resumen -->
   <div class="summary-container">
     <div id="avance-general-chart" class="summary-chart"></div>
@@ -55,9 +49,29 @@
         .html(`<strong>Error:</strong> ${message}`);
     }
 
+    // Función para mostrar advertencias
+    function showWarning(message) {
+      d3.select("#warning-container").append("div")
+        .attr("class", "warning-message")
+        .text(message);
+    }
+
+    // Función para parsear valores de avance (NUEVA FUNCIÓN AÑADIDA)
+    function parseAvance(value) {
+      if (value === null || value === undefined) return 0;
+      if (typeof value === 'number') return Math.min(100, Math.max(0, value)); // Asegurar que está entre 0-100
+      if (typeof value === 'string') {
+        // Eliminar símbolos de porcentaje, espacios y comas
+        const cleaned = value.replace(/%|\s|,/g, '');
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? 0 : Math.min(100, Math.max(0, num)); // Asegurar que está entre 0-100
+      }
+      return 0;
+    }
+
     // Función para crear gráficos circulares
     function createDonutChart(containerId, data, title, showPercentage = false, decimals = 0, centerText = "", width = 150, height = 150) {
-      d3.select(`#${containerId}`).html(""); // Limpiar contenedor primero
+      d3.select(`#${containerId}`).html("");
       
       const radius = Math.min(width, height) / 2;
       const svg = d3.select(`#${containerId}`)
@@ -67,7 +81,6 @@
         .append("g")
         .attr("transform", `translate(${width/2},${height/2})`);
       
-      // Añadir título
       d3.select(`#${containerId}`)
         .insert("div", ":first-child")
         .attr("class", "chart-title")
@@ -118,60 +131,55 @@
       });
     }
 
-    // Cargar datos desde GitHub
-    function loadData() {
-      // Opción 1: Ruta relativa (funciona si el archivo está en la misma ubicación)
-      const dataUrl = 'data.json';
-      
-      // Opción 2: URL absoluta de GitHub Raw (alternativa si la opción 1 falla)
-      // const dataUrl = 'https://raw.githubusercontent.com/TU-USUARIO/TU-REPOSITORIO/main/data.json';
-      
-      d3.json(dataUrl)
-        .then(data => {
-          if (!data || !Array.isArray(data)) {
-            throw new Error("El archivo data.json está vacío o no tiene el formato correcto");
-          }
-          
-          // Convertir datos al formato de tabla
-          const tabla = [
-            ["ONR", "Fecha I.", "Estado actual", "Avance según plan", "Avance real", "Observaciones"],
-            ...data.map(proyecto => [
-              proyecto.ONR || "N/A",
-              proyecto["Fecha I."] || "",
-              proyecto["Estado actual"] || "Desconocido",
-              proyecto["Avance según plan"] || 0,
-              proyecto["Avance real"] || 0,
-              proyecto.Observaciones || ""
-            ])
-          ];
-          
-          initDashboard(tabla);
-        })
-        .catch(error => {
-          console.error("Error cargando datos:", error);
-          showError(`No se pudo cargar data.json: ${error.message}<br><br>
-            Asegúrate que:<br>
-            1. El archivo data.json existe en la raíz del repositorio<br>
-            2. Tiene el formato JSON correcto<br>
-            3. Si usas GitHub Pages, la URL debe ser correcta`);
-        });
+    // Función para cargar datos
+    async function loadData() {
+      try {
+        const dataUrl = 'data.json';
+        const response = await fetch(dataUrl);
+        
+        if (!response.ok) {
+          throw new Error(`No se pudo cargar data.json (status: ${response.status})`);
+        }
+        
+        const data = await response.json();
+        
+        if (!Array.isArray(data)) {
+          throw new Error("El archivo JSON no contiene un array de proyectos");
+        }
+
+        // Procesar los datos para la tabla
+        const tabla = [
+          ["ONR", "Fecha I.", "Estado actual", "Avance según plan", "Avance real", "Observaciones"],
+          ...data.map(proyecto => [
+            proyecto.ONR || "N/A",
+            proyecto["Fecha I."] || "",
+            proyecto["Estado actual"] || "Desconocido",
+            parseAvance(proyecto["Avance según plan"]), // Usamos parseAvance aquí
+            parseAvance(proyecto["Avance real"]),      // Y aquí
+            proyecto.Observaciones || ""
+          ])
+        ];
+        
+        initDashboard(tabla);
+      } catch (error) {
+        console.error("Error cargando datos:", error);
+        showError(`Error al cargar datos: ${error.message}`);
+      }
     }
 
     // Función principal del dashboard
     function initDashboard(tabla) {
-
-        try {            // Limpiar contenedores de mensajes
+      try {
+        // Limpiar contenedores de mensajes
         d3.select("#error-container").html("");
         d3.select("#warning-container").html("");
         
         // 1. Calcular el avance general promedio
-        const avances = tabla.slice(1)
-          .map(row => parseAvance(row[4]))  // Avance real ahora es índice 4
-          .filter(v => !isNaN(v) && v >= 0 && v <= 100);
+        const avances = tabla.slice(1).map(row => row[4]); // Avance real es índice 4
         
         if (avances.length === 0) {
-          throw new Error("No se encontraron valores válidos de avance (deben ser números entre 0 y 100)");
-        }    
+          throw new Error("No hay proyectos en los datos");
+        }
         
         const totalAvance = avances.reduce((sum, val) => sum + val, 0);
         const avancePromedio = totalAvance / avances.length;
@@ -181,19 +189,19 @@
         const conteoEstados = { completados: 0, enProgreso: 0, retrasados: 0 };
         
         tabla.slice(1).forEach(row => {
-          const estado = (row[2] || "").toLowerCase();
+          const estado = (row[2] || "").toLowerCase(); // Estado actual es índice 2
           if (estado.includes("completado")) conteoEstados.completados++;
           else if (estado.includes("progreso")) conteoEstados.enProgreso++;
           else if (estado.includes("retrasado") || estado.includes("stand by")) conteoEstados.retrasados++;
         });
         
         const totalProyectosEstado = conteoEstados.completados + conteoEstados.enProgreso + conteoEstados.retrasados;
-        // Mostrar advertencia si hay proyectos sin estado definido
+
+        // Mostrar advertencia si hay discrepancias
         if (totalProyectosEstado < tabla.length - 1) {
-          d3.select("#warning-container").append("div")
-            .attr("class", "warning-message")
-            .text(`Advertencia: ${tabla.length - 1 - totalProyectosEstado} proyectos no tienen estado definido o no es reconocido`);
+          showWarning(`${tabla.length - 1 - totalProyectosEstado} proyectos no tienen estado reconocido`);
         }
+
         // Crear gráficos
         createDonutChart("avance-general-chart", [
           { label: "Avanzado", value: avancePromedio, color: "#4CAF50" },
@@ -206,6 +214,8 @@
           { label: "Retrasados", value: conteoEstados.retrasados, color: "#F44336" }
         ], "Distribución por Estado", false, 0, `${conteoEstados.completados}/${totalProyectosEstado}`);
 
+
+		
         // Crear la tabla
     const table = d3.select("#dashboard").append("table").attr("class", "mi-tabla");
     const thead = table.append("thead");
