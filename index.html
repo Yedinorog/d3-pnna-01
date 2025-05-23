@@ -17,12 +17,20 @@
     .progress-real { height: 100%; background: #1976d2; position: absolute; top: 0; left: 0; }
     .progress-label { position: absolute; width: 100%; text-align: center; line-height: 20px; font-size: 12px; color: #333; }
     .error-message { color: red; padding: 15px; background: #ffeeee; border: 1px solid red; margin: 20px; border-radius: 5px; }
+    .warning-message {
+      color: orange;
+      padding: 15px;
+      background: #fff8e6;
+      border: 1px solid orange;
+      margin: 20px;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
   <h2>Tablero de Control PNNA</h2>
   <div id="error-container"></div>
-
+  <div id="warning-container"></div>
   <!-- Contenedor para los gráficos de resumen -->
   <div class="summary-container">
     <div id="avance-general-chart" class="summary-chart"></div>
@@ -151,10 +159,19 @@
 
     // Función principal del dashboard
     function initDashboard(tabla) {
-      try {
+
+        try {            // Limpiar contenedores de mensajes
+        d3.select("#error-container").html("");
+        d3.select("#warning-container").html("");
+        
         // 1. Calcular el avance general promedio
-        const avances = tabla.slice(1).map(row => parseFloat(row[5])).filter(v => !isNaN(v));
-        if (avances.length === 0) throw new Error("No hay datos de avance válidos");
+        const avances = tabla.slice(1)
+          .map(row => parseAvance(row[4]))  // Avance real ahora es índice 4
+          .filter(v => !isNaN(v) && v >= 0 && v <= 100);
+        
+        if (avances.length === 0) {
+          throw new Error("No se encontraron valores válidos de avance (deben ser números entre 0 y 100)");
+        }    
         
         const totalAvance = avances.reduce((sum, val) => sum + val, 0);
         const avancePromedio = totalAvance / avances.length;
@@ -164,14 +181,19 @@
         const conteoEstados = { completados: 0, enProgreso: 0, retrasados: 0 };
         
         tabla.slice(1).forEach(row => {
-          const estado = (row[3] || "").toLowerCase();
+          const estado = (row[2] || "").toLowerCase();
           if (estado.includes("completado")) conteoEstados.completados++;
           else if (estado.includes("progreso")) conteoEstados.enProgreso++;
           else if (estado.includes("retrasado") || estado.includes("stand by")) conteoEstados.retrasados++;
         });
         
         const totalProyectosEstado = conteoEstados.completados + conteoEstados.enProgreso + conteoEstados.retrasados;
-
+        // Mostrar advertencia si hay proyectos sin estado definido
+        if (totalProyectosEstado < tabla.length - 1) {
+          d3.select("#warning-container").append("div")
+            .attr("class", "warning-message")
+            .text(`Advertencia: ${tabla.length - 1 - totalProyectosEstado} proyectos no tienen estado definido o no es reconocido`);
+        }
         // Crear gráficos
         createDonutChart("avance-general-chart", [
           { label: "Avanzado", value: avancePromedio, color: "#4CAF50" },
