@@ -1,4 +1,4 @@
-<!DOCTYPE html>		deepseek
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -44,11 +44,9 @@
     function showError(message) {
       d3.select("#error-container").append("div")
         .attr("class", "error-message")
-        .html(`<strong>Error:</strong> ${message}<br>
-               Asegúrate que:<br>
-               1. El archivo data.json existe en la raíz del repositorio<br>
-               2. Tiene el formato JSON correcto`);
+        .html(`<strong>Error:</strong> ${message}`);
     }
+
     // Función para crear gráficos circulares
     function createDonutChart(containerId, data, title, showPercentage = false, decimals = 0, centerText = "", width = 150, height = 150) {
       d3.select(`#${containerId}`).html(""); // Limpiar contenedor primero
@@ -111,15 +109,20 @@
         }
       });
     }
+
     // Cargar datos desde GitHub
     function loadData() {
-      // Usamos la ruta absoluta al repositorio para evitar problemas de CORS
-      const repoName = window.location.pathname.split('/')[1] || 'tu-repositorio';
-      const dataUrl = `/${repoName}/data.json`;
+      // Opción 1: Ruta relativa (funciona si el archivo está en la misma ubicación)
+      const dataUrl = 'data.json';
+      
+      // Opción 2: URL absoluta de GitHub Raw (alternativa si la opción 1 falla)
+      // const dataUrl = 'https://raw.githubusercontent.com/TU-USUARIO/TU-REPOSITORIO/main/data.json';
       
       d3.json(dataUrl)
         .then(data => {
-          if (!data) throw new Error("El archivo data.json está vacío");
+          if (!data || !Array.isArray(data)) {
+            throw new Error("El archivo data.json está vacío o no tiene el formato correcto");
+          }
           
           // Convertir datos al formato de tabla
           const tabla = [
@@ -127,9 +130,9 @@
             ...data.map(proyecto => [
               proyecto.ONR || "N/A",
               proyecto["Descripción"] || "",
-              proyecto["Fecha I."] || "",
+              proyecto["Fecha I."] || proyecto["Fec. I."] || "",
               proyecto["Estado actual"] || "Desconocido",
-              proyecto["Avance según plan"] || 0,
+              proyecto["Avance según plan"] || proyecto["Av. planeado"] || 0,
               proyecto["Avance real"] || 0,
               proyecto.Observaciones || ""
             ])
@@ -138,44 +141,51 @@
           initDashboard(tabla);
         })
         .catch(error => {
-          console.error("Error:", error);
-          showError(`No se pudo cargar data.json: ${error.message}`);
+          console.error("Error cargando datos:", error);
+          showError(`No se pudo cargar data.json: ${error.message}<br><br>
+            Asegúrate que:<br>
+            1. El archivo data.json existe en la raíz del repositorio<br>
+            2. Tiene el formato JSON correcto<br>
+            3. Si usas GitHub Pages, la URL debe ser correcta`);
         });
     }
 
     // Función principal del dashboard
     function initDashboard(tabla) {
-      // 1. Calcular el avance general promedio
-      const avances = tabla.slice(1).map(row => parseFloat(row[5])).filter(v => !isNaN(v));
-      const totalAvance = avances.reduce((sum, val) => sum + val, 0);
-      const avancePromedio = avances.length > 0 ? totalAvance / avances.length : 0;
-      const avancePendiente = 100 - avancePromedio;
+      try {
+        // 1. Calcular el avance general promedio
+        const avances = tabla.slice(1).map(row => parseFloat(row[5])).filter(v => !isNaN(v));
+        if (avances.length === 0) throw new Error("No hay datos de avance válidos");
+        
+        const totalAvance = avances.reduce((sum, val) => sum + val, 0);
+        const avancePromedio = totalAvance / avances.length;
+        const avancePendiente = 100 - avancePromedio;
 
-      // 2. Calcular distribución por estados
-      const conteoEstados = { completados: 0, enProgreso: 0, retrasados: 0 };
-      
-      tabla.slice(1).forEach(row => {
-        const estado = (row[3] || "").toLowerCase();
-        if (estado.includes("completado")) conteoEstados.completados++;
-        else if (estado.includes("progreso")) conteoEstados.enProgreso++;
-        else if (estado.includes("retrasado") || estado.includes("stand by")) conteoEstados.retrasados++;
-      });
-      
-      const totalProyectosEstado = conteoEstados.completados + conteoEstados.enProgreso + conteoEstados.retrasados;
+        // 2. Calcular distribución por estados
+        const conteoEstados = { completados: 0, enProgreso: 0, retrasados: 0 };
+        
+        tabla.slice(1).forEach(row => {
+          const estado = (row[3] || "").toLowerCase();
+          if (estado.includes("completado")) conteoEstados.completados++;
+          else if (estado.includes("progreso")) conteoEstados.enProgreso++;
+          else if (estado.includes("retrasado") || estado.includes("stand by")) conteoEstados.retrasados++;
+        });
+        
+        const totalProyectosEstado = conteoEstados.completados + conteoEstados.enProgreso + conteoEstados.retrasados;
 
-      // Crear gráficos
-      createDonutChart("avance-general-chart", [
-        { label: "Avanzado", value: avancePromedio, color: "#4CAF50" },
-        { label: "Pendiente", value: avancePendiente, color: "#F44336" }
-      ], "Avance General Promedio", true, 0, `${avancePromedio.toFixed(0)}%`);
+        // Crear gráficos
+        createDonutChart("avance-general-chart", [
+          { label: "Avanzado", value: avancePromedio, color: "#4CAF50" },
+          { label: "Pendiente", value: avancePendiente, color: "#F44336" }
+        ], "Avance General Promedio", true, 0, `${avancePromedio.toFixed(0)}%`);
 
-      createDonutChart("estados-chart", [
-        { label: "Completados", value: conteoEstados.completados, color: "#4CAF50" },
-        { label: "En progreso", value: conteoEstados.enProgreso, color: "#FFC107" },
-        { label: "Retrasados", value: conteoEstados.retrasados, color: "#F44336" }
-      ], "Distribución por Estado", false, 0, `${conteoEstados.completados}/${totalProyectosEstado}`);
+        createDonutChart("estados-chart", [
+          { label: "Completados", value: conteoEstados.completados, color: "#4CAF50" },
+          { label: "En progreso", value: conteoEstados.enProgreso, color: "#FFC107" },
+          { label: "Retrasados", value: conteoEstados.retrasados, color: "#F44336" }
+        ], "Distribución por Estado", false, 0, `${conteoEstados.completados}/${totalProyectosEstado}`);
 
-    // Crear la tabla
+        // Crear la tabla
     const table = d3.select("#dashboard").append("table").attr("class", "mi-tabla");
     const thead = table.append("thead");
     const tbody = table.append("tbody");
@@ -317,7 +327,13 @@
       .attr("font-size", 16)
       .attr("fill", "#1976d2")
       .text("Avance Real por ONR");
-     }
+        
+      } catch (error) {
+        console.error("Error en initDashboard:", error);
+        showError(`Error al mostrar los datos: ${error.message}`);
+      }
+    }
+
     // Iniciar cuando el DOM esté listo
     document.addEventListener("DOMContentLoaded", loadData);
   </script>
