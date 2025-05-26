@@ -149,12 +149,12 @@
 
         // Procesar los datos para la tabla
         const tabla = [
-          ["ONR", "Fecha I.", "Estado actual", "Avance según plan", "Avance real", "Observaciones"],
+          ["ONR", "Fecha I.", "Estado actual", "Avance segun plan", "Avance real", "Observaciones"],
           ...data.map(proyecto => [
             proyecto.ONR || "N/A",
             proyecto["Fecha I."] || "",
             proyecto["Estado actual"] || "Desconocido",
-            parseAvance(proyecto["Avance según plan"]), // Usamos parseAvance aquí
+            parseAvance(proyecto["Avance segun plan"]), // Usamos parseAvance aquí
             parseAvance(proyecto["Avance real"]),      // Y aquí
             proyecto.Observaciones || ""
           ])
