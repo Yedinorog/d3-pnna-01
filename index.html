@@ -36,10 +36,10 @@
   <script>
     // Colores para los estados
     const estadoColor = {
-      "Completado": "#4CAF50",
-      "En progreso": "#FFC107",
-      "Stand by": "#F44336",
-      "Retrasado": "#F44336"
+      "Completado": "#78CD00",
+      "En curso": "#FFF0",
+      "Suspendido": "#ff8D80",
+      "Anteproyecto": "#90D5FF"
     };
 
     // Función para mostrar errores
@@ -191,8 +191,8 @@
         tabla.slice(1).forEach(row => {
           const estado = (row[2] || "").toLowerCase(); // Estado actual es índice 2
           if (estado.includes("completado")) conteoEstados.completados++;
-          else if (estado.includes("progreso")) conteoEstados.enProgreso++;
-          else if (estado.includes("retrasado") || estado.includes("stand by")) conteoEstados.retrasados++;
+          else if (estado.includes("En curso")) conteoEstados.enProgreso++;
+          else if (estado.includes("Anteproyecto") || estado.includes("Suspendido")) conteoEstados.retrasados++;
         });
         
         const totalProyectosEstado = conteoEstados.completados + conteoEstados.enProgreso + conteoEstados.retrasados;
