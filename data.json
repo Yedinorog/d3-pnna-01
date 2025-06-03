@@ -2,191 +2,191 @@
   {
     "ONR": "AOP 02",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 95,
-    "Estado actual": "En progreso",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "En actualizacion de procedimientos"
   },
   {
     "ONR": "AOP 08",
     "Fecha I.": 2022,
-    "Avance segun plan": 100,
+    "Avance según plan": 100,
     "Avance real": 48,
     "Estado actual": "En progreso",
-    "Observaciones": "Lectura y validacion de datos"
+    "Observaciones": "De acuerdo a las reuniones sostenidas con personal de aerolineas, se vio por conveniente llevar a cabo las reuniones de coordinacion de la fase 1 posterior a la quincena del mes de junio debido al inicio de operaciones del nuevo terminal del aeropuerto Jorge chavez En consecuencia no se ha llegado a definir al momento el 100% de los  procedimientos para esta fase Ademas de ello y en vista de esta situacion tambien se ha pactado reuniones con las gerencias operativas de CORPAC para la segunda quincena del mes de junio  Sin embargo aun se mantene la operatividad de la plataforma y la comparticion de informacion operacional."
   },
   {
     "ONR": "AOP 09",
     "Fecha I.": 2022,
-    "Avance segun plan": 100,
-    "Avance real": 48,
-    "Estado actual": "En progreso",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Lectura y validacion de datos"
   },
   {
     "ONR": "AOP 11",
     "Fecha I.": 2021,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento plan integracion"
   },
   {
     "ONR": "ATM 01",
     "Fecha I.": 2024,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
-    "Observaciones": "Mantenimiento procedimientos"
+    "Avance según plan": 100,
+    "Avance real": 21,
+    "Estado actual": "En progreso",
+    "Observaciones": "Procedimientos en revision"
   },
   {
     "ONR": "ATM 02",
     "Fecha I.": 2024,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
-    "Observaciones": "Mantenimiento procedimientos"
+    "Avance según plan": 100,
+    "Avance real": 74,
+    "Estado actual": "En progreso",
+    "Observaciones": "Procedimientos en revision"
   },
   {
     "ONR": "ATM 03",
     "Fecha I.": 2024,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
-    "Observaciones": "Mantenimiento procedimientos"
+    "Avance según plan": 100,
+    "Avance real": 57,
+    "Estado actual": "En progreso",
+    "Observaciones": "Procedimientos en revision"
   },
   {
     "ONR": "ATM 04",
     "Fecha I.": 2024,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
-    "Observaciones": "Mantenimiento procedimientos"
+    "Avance según plan": 100,
+    "Avance real": 7,
+    "Estado actual": "En progreso",
+    "Observaciones": "Procedimientos en revision"
   },
   {
     "ONR": "ATM 11",
     "Fecha I.": 2025,
-    "Avance segun plan": 80,
-    "Avance real": 80,
-    "Estado actual": "En progreso",
+    "Avance según plan": 80,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Desarrollo procedimientos y pruebas"
   },
   {
     "ONR": "ATM 12",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento plan"
   },
   {
     "ONR": "ATM 23",
     "Fecha I.": 2021,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento lista de verificacion"
   },
   {
     "ONR": "ATM 25",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento del plan"
   },
   {
     "ONR": "ATM 27",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento del plan"
   },
   {
     "ONR": "ATM 28",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento del plan"
   },
   {
     "ONR": "ATM 29",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento del plan"
   },
   {
     "ONR": "ATM 31",
     "Fecha I.": 2021,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento del plan"
   },
   {
     "ONR": "ATM 32",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento del plan"
   },
   {
     "ONR": "ATM 34",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento del plan"
   },
   {
     "ONR": "ATM 41",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 100,
-    "Estado actual": "Completado",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Mantenimiento del plan"
   },
   {
     "ONR": "CNS 01",
     "Fecha I.": 2025,
-    "Avance segun plan": 100,
-    "Avance real": 29,
+    "Avance según plan": 100,
+    "Avance real": 25,
     "Estado actual": "En progreso",
-    "Observaciones": "Actualizacion Regulacion"
+    "Observaciones": "Falta solicitar a  CORPAC el cronograma formalmente"
   },
   {
     "ONR": "CNS 02",
     "Fecha I.": 2025,
-    "Avance segun plan": 100,
-    "Avance real": 5,
-    "Estado actual": "En progreso",
+    "Avance según plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
     "Observaciones": "Toma de datos su validacion"
   },
   {
     "ONR": "CNS 05",
     "Fecha I.": 2021,
-    "Avance segun plan": 100,
-    "Avance real": 25,
+    "Avance según plan": 100,
+    "Avance real": 20,
     "Estado actual": "En progreso",
     "Observaciones": "En planificacion"
   },
   {
     "ONR": "CNS 07",
     "Fecha I.": 2026,
-    "Avance segun plan": 90,
+    "Avance según plan": 90,
     "Avance real": 100,
     "Estado actual": "Completado",
     "Observaciones": "Mantenimiento plan"
   },
   {
-    "ONR": "CNS 08",
+    "ONR": " CNS 08",
     "Fecha I.": 2020,
-    "Avance segun plan": 100,
+    "Avance según plan": 100,
     "Avance real": 100,
     "Estado actual": "Completado",
     "Observaciones": "Mantenimiento plan"
@@ -194,49 +194,49 @@
   {
     "ONR": "AIM 01",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 50,
+    "Avance según plan": 100,
+    "Avance real": "23,8",
     "Estado actual": "En progreso",
-    "Observaciones": "Fuente de datos no actualizada"
+    "Observaciones": "La fuente de datos no brinda informacion"
   },
   {
     "ONR": "AIM 02",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 5,
-    "Estado actual": "En progreso",
-    "Observaciones": "Sistemas no compatibles"
+    "Avance según plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Sin informacion & Sistemas no compatibles"
   },
   {
     "ONR": "AIM 03",
     "Fecha I.": 2024,
-    "Avance segun plan": 100,
-    "Avance real": 5,
-    "Estado actual": "En progreso",
-    "Observaciones": "Sistemas no compatibles"
+    "Avance según plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Sin informacion & Sistemas no compatibles"
   },
   {
     "ONR": "AIM 04",
     "Fecha I.": 2024,
-    "Avance segun plan": 100,
-    "Avance real": 5,
-    "Estado actual": "En progreso",
-    "Observaciones": "Sistemas no compatibles"
+    "Avance según plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Sin informacion & Sistemas no compatibles"
   },
   {
     "ONR": "AIM 05",
     "Fecha I.": 2023,
-    "Avance segun plan": 100,
-    "Avance real": 5,
-    "Estado actual": "En progreso",
-    "Observaciones": "Sistemas no compatibles"
+    "Avance según plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Sin informacion & Sistemas no compatibles"
   },
   {
     "ONR": "AIM 06",
     "Fecha I.": 2024,
-    "Avance segun plan": 100,
-    "Avance real": 5,
-    "Estado actual": "En progreso",
-    "Observaciones": "Sistemas no compatibles"
+    "Avance según plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Sin informacion & Sistemas no compatibles"
   }
 ]
