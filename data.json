@@ -67,9 +67,9 @@
     "ONR": "ATM 11",
     "Fecha I.": 2025,
     "Avance segun plan": 80,
-    "Avance real": 0,
-    "Estado actual": "Retrasado",
-    "Observaciones": "Desarrollo procedimientos y pruebas"
+    "Avance real": 100,
+    "Estado actual": "Completado",
+    "Observaciones": "Suplemento publicado"
   },
   {
     "ONR": "ATM 12",
