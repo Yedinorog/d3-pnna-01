@@ -20,8 +20,8 @@
     "Fecha I.": 2022,
     "Avance segun plan": 100,
     "Avance real": 0,
-    "Estado actual": "Retrasado",
-    "Observaciones": "Lectura y validacion de datos"
+    "Estado actual": "Stand by",
+    "Observaciones": "Se han iniciado coordinaciones con el FMU LIMA respecto del concepto ACDM y la funcion de dicha dependencia ATFM en el intercambio de información. Sin embargo los procedimientos operacionales estan pendientes de definicion ya  que estan relacionados a la definicion de procedimientos de la Fase 1 que se encuentra por definir"
   },
   {
     "ONR": "AOP 11",
@@ -29,7 +29,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento plan integracion"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 01",
@@ -77,7 +77,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 23",
@@ -85,7 +85,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento lista de verificacion"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 25",
@@ -93,7 +93,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento del plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 27",
@@ -101,7 +101,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento del plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 28",
@@ -109,7 +109,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento del plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 29",
@@ -117,7 +117,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento del plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 31",
@@ -125,7 +125,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento del plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 32",
@@ -133,7 +133,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento del plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 34",
@@ -141,7 +141,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento del plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "ATM 41",
@@ -149,7 +149,7 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Mantenimiento del plan"
+    "Observaciones": "-"
   },
   {
     "ONR": "CNS 01",
@@ -157,7 +157,7 @@
     "Avance segun plan": 100,
     "Avance real": 25,
     "Estado actual": "En progreso",
-    "Observaciones": "Falta solicitar a  CORPAC el cronograma formalmente"
+    "Observaciones": "Falta el cronograma formal de CORPAC"
   },
   {
     "ONR": "CNS 02",
@@ -165,15 +165,15 @@
     "Avance segun plan": 100,
     "Avance real": 0,
     "Estado actual": "Retrasado",
-    "Observaciones": "Toma de datos su validacion"
+    "Observaciones": "-"
   },
   {
     "ONR": "CNS 05",
     "Fecha I.": 2021,
     "Avance segun plan": 100,
-    "Avance real": 20,
+    "Avance real": 9,
     "Estado actual": "En progreso",
-    "Observaciones": "En planificacion"
+    "Observaciones": "Segun Corpac debería estar al 17%"
   },
   {
     "ONR": "CNS 07",
@@ -181,7 +181,7 @@
     "Avance segun plan": 90,
     "Avance real": 100,
     "Estado actual": "Completado",
-    "Observaciones": "Mantenimiento plan"
+    "Observaciones": "En uso"
   },
   {
     "ONR": " CNS 08",
@@ -189,7 +189,7 @@
     "Avance segun plan": 100,
     "Avance real": 100,
     "Estado actual": "Completado",
-    "Observaciones": "Mantenimiento plan"
+    "Observaciones": "En uso"
   },
   {
     "ONR": "AIM 01",
@@ -197,7 +197,7 @@
     "Avance segun plan": 100,
     "Avance real": 24,
     "Estado actual": "En progreso",
-    "Observaciones": "La fuente de datos no brinda informacion"
+    "Observaciones": " CORPAC tiene pendiente entregar reporte de su sistema de calidad"
   },
   {
     "ONR": "AIM 02",
@@ -205,7 +205,7 @@
     "Avance segun plan": 100,
     "Avance real": 1,
     "Estado actual": "Stand by",
-    "Observaciones": "Sin informacion & Sistemas no compatibles"
+    "Observaciones": "Depende del ONR CNS 05 AMHS"
   },
   {
     "ONR": "AIM 03",
@@ -213,7 +213,7 @@
     "Avance segun plan": 100,
     "Avance real": 1,
     "Estado actual": "Stand by",
-    "Observaciones": "Sin informacion & Sistemas no compatibles"
+    "Observaciones": "Depende del ONR CNS 05 AMHS"
   },
   {
     "ONR": "AIM 04",
@@ -221,7 +221,7 @@
     "Avance segun plan": 100,
     "Avance real": 1,
     "Estado actual": "Stand by",
-    "Observaciones": "Sin informacion & Sistemas no compatibles"
+    "Observaciones": "Depende del ONR CNS 05 AMHS"
   },
   {
     "ONR": "AIM 05",
@@ -229,7 +229,7 @@
     "Avance segun plan": 100,
     "Avance real": 1,
     "Estado actual": "Stand by",
-    "Observaciones": "Sin informacion & Sistemas no compatibles"
+    "Observaciones": "Depende del ONR CNS 05 AMHS"
   },
   {
     "ONR": "AIM 06",
@@ -237,6 +237,6 @@
     "Avance segun plan": 100,
     "Avance real": 1,
     "Estado actual": "Stand by",
-    "Observaciones": "Sin informacion & Sistemas no compatibles"
+    "Observaciones": "Depende del ONR CNS 05 AMHS"
   }
 ]
