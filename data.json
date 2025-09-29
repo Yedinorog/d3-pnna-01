@@ -18,7 +18,7 @@
     "ONR": "AOP 08",
     "Fecha I.": 2022,
     "Avance segun plan": 100,
-    "Avance real": 48,
+    "Avance real": 49,
     "Estado actual": "En progreso",
     "Observaciones": "Se consensuo implantar el CTOT CERO en SPZO para reducir demoras nocturnas, requiriendo actualizar los protocolos de coordinacion entre APP Cusco y FMU Lima, con reunion clave el 14 de agosto para cerrar el manual operativo de la Fase 1.   LATAM confirmo nuevo personal en Cusco desde el 1 de agosto para participar en la ACDM y se comprometio a alinear sus procesos internos del ARDT con los indicadores del grupo.   En la 2a quincena de agosto se espera una reunion para aprobar procedimientos y manual de la Fase 1, y definir fechas para pruebas preoperacionales."
   },
@@ -42,7 +42,7 @@
     "ONR": "ATM 01",
     "Fecha I.": 2024,
     "Avance segun plan": 100,
-    "Avance real": 21,
+    "Avance real": 23,
     "Estado actual": "En progreso",
     "Observaciones": "Procedimientos en revision"
   },
@@ -238,3 +238,4 @@
     "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
   }
 ]
+
