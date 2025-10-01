@@ -44,7 +44,7 @@
     "Avance segun plan": 100,
     "Avance real": 23,
     "Estado actual": "En progreso",
-    "Observaciones": "Procedimientos: El 23% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades básicas (RNP APCH)."
+    "Observaciones": "Procedimientos: El 23% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades básicas RNP APCH."
   },
   {
     "ONR": "ATM 02",
@@ -52,7 +52,7 @@
     "Avance segun plan": 100,
     "Avance real": 74,
     "Estado actual": "En progreso",
-    "Observaciones": "Procedimientos: El 74% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades avanzadas (RNP AR APCH)."
+    "Observaciones": "Procedimientos: El 74% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades avanzadas RNP AR APCH)"
   },
   {
     "ONR": "ATM 03",
@@ -238,6 +238,7 @@
     "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
   }
 ]
+
 
 
 
