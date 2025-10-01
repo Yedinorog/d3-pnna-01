@@ -36,7 +36,7 @@
     "Avance segun plan": 100,
     "Avance real": 60,
     "Estado actual": "En progreso",
-    "Observaciones": "Mantenimiento plan integracion"
+    "Observaciones": "CORPAC (ANSP) coordina con LAP, AdP y AAP la implementación y seguimiento de sus SMS."
   },
   {
     "ONR": "ATM 01",
@@ -44,7 +44,7 @@
     "Avance segun plan": 100,
     "Avance real": 23,
     "Estado actual": "En progreso",
-    "Observaciones": "Procedimientos en revision"
+    "Observaciones": "Procedimientos: El 23% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades básicas (RNP APCH)."
   },
   {
     "ONR": "ATM 02",
@@ -52,7 +52,7 @@
     "Avance segun plan": 100,
     "Avance real": 74,
     "Estado actual": "En progreso",
-    "Observaciones": "Procedimientos en revision"
+    "Observaciones": "Procedimientos: El 74% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades avanzadas (RNP AR APCH)."
   },
   {
     "ONR": "ATM 03",
@@ -60,7 +60,7 @@
     "Avance segun plan": 100,
     "Avance real": 57,
     "Estado actual": "En progreso",
-    "Observaciones": "Procedimientos en revision"
+    "Observaciones": "Procedimientos: generación de cartas, simulación/validación y preparación de AIP. En curso la coordinación con ATC/operadores y la verificación de trayectorias."
   },
   {
     "ONR": "ATM 04",
@@ -68,7 +68,7 @@
     "Avance segun plan": 100,
     "Avance real": 7,
     "Estado actual": "En progreso",
-    "Observaciones": "Procedimientos en revision"
+    "Observaciones": "Procedimientos: generación de cartas, simulación/validación y preparación de AIP. En curso la coordinación con ATC/operadores y la verificación de trayectorias."
   },
   {
     "ONR": "ATM 11",
@@ -159,14 +159,14 @@
     "Avance segun plan": 100,
     "Avance real": 25,
     "Estado actual": "En progreso",
-    "Observaciones": "CORPAC en proceso de implantacion."
+    "Observaciones": "CORPAC completó la implementación en tierra. En curso: validación y pruebas con actores, en curso."
   },
   {
     "ONR": "CNS 02",
     "Fecha I.": 2025,
     "Avance segun plan": 100,
     "Avance real": 15,
-    "Estado actual": "En progreso"
+    "Estado actual": "Procura: CORPAC ha iniciado el proceso de adquisición del sistema MLAT."
   },
   {
     "ONR": "CNS 05",
@@ -238,6 +238,7 @@
     "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
   }
 ]
+
 
 
 
