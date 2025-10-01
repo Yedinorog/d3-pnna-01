@@ -20,10 +20,7 @@
     "Avance segun plan": 100,
     "Avance real": 49,
     "Estado actual": "En progreso",
-    "Observaciones": "Capacitación FMP Lima: se completó la inducción de la Fase 1 para todo el personal operativo.
-Pruebas y ajustes: se realizaron pruebas funcionales en la FMP Lima y se ajustó la plataforma de compartición según requerimientos ATFM.
-Gobernanza A-CDM: el jueves 18 de septiembre se efectuó la 15ª. reunión; se presentó el Manual de Procedimientos Fase 1 y se recabó retroalimentación de los interesados.
-Validación en Cusco: se ejecutaron pruebas preparatorias y una validación inicial de procedimientos en las dependencias ATC del aeropuerto."
+    "Observaciones": "Capacitación FMP Lima: se completó la inducción de la Fase 1 para todo el personal operativo. Pruebas y ajustes: se realizaron pruebas funcionales en la FMP Lima y se ajustó la plataforma de compartición según requerimientos ATFM. Gobernanza A-CDM: el jueves 18 de septiembre se efectuó la 15ª. reunión; se presentó el Manual de Procedimientos Fase 1 y se recabó retroalimentación de los interesados. Validación en Cusco: se ejecutaron pruebas preparatorias y una validación inicial de procedimientos en las dependencias ATC del aeropuerto."
   },
   {
     "ONR": "AOP 09",
@@ -241,5 +238,6 @@ Validación en Cusco: se ejecutaron pruebas preparatorias y una validación inic
     "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
   }
 ]
+
 
 
