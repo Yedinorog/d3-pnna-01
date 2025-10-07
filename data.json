@@ -4,7 +4,7 @@
     "Fecha I.": 2023,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado ñÑ"
+    "Estado actual": "Completado"
   },
   {
     "ONR": "AOP 02",
@@ -239,6 +239,7 @@
     "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
   }
 ]
+
 
 
 
