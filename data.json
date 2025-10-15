@@ -1,8 +1,241 @@
-[["ONR","Fecha I.","Avance segun plan","Avance real","Estado actual","Observaciones"],["AOP 01",2023,100,100,"Completado",null],["AOP 02",2023,100,15,"En progreso","CORPAC ha iniciado el proceso de adquisición del sistema A-SMGCS"],["AOP 08",2022,100,49,"En progreso","Capacitación FMP Lima: se completó la inducción de la Fase 1 para todo el personal operativo. Pruebas y ajustes: se realizaron pruebas funcionales en la FMP Lima y se ajustó la plataforma de compartición según requerimientos ATFM. Gobernanza A-CDM: el jueves 18 de septiembre se efectuó la 15ª. reunión; se presentó el Manual de Procedimientos Fase 1 y se recabó retroalimentación de los interesados. Validación en Cusco: se ejecutaron pruebas preparatorias y una validación inicial de procedimientos en las dependencias ATC del aeropuerto."],["AOP 09",2022,100,0,"Retrasado","Se han iniciado coordinaciones con el FMU LIMA respecto del concepto ACDM y la funcion de dicha dependencia ATFM en el intercambio de informacion. Sin embargo los procedimientos operacionales estan pendientes de definicion ya  que estan relacionados a la definicion de procedimientos de la Fase 1 que se encuentra por definir."],["AOP 11",2021,100,60,"En progreso","CORPAC (ANSP) coordina con LAP, AdP y AAP la implementación y seguimiento de sus SMS."],["ATM 01",2024,100,23,"En progreso","Procedimientos: El 23% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades básicas (RNP APCH)."],["ATM 02",2024,100,74,"En progreso","Procedimientos: El 74% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades avanzadas (RNP AR APCH)."],["ATM 03",2024,100,57,"En progreso","Procedimientos: generación de cartas, simulación/validación y preparación de AIP. En curso la coordinación con ATC/operadores y la verificación de trayectorias."],["ATM 04",2024,100,7,"En progreso","Procedimientos: generación de cartas, simulación/validación y preparación de AIP. En curso la coordinación con ATC/operadores y la verificación de trayectorias."],["ATM 11",2025,80,100,"Completado","Suplemento publicado"],["ATM 12",2023,100,25,"En progreso","Mantenimiento plan"],["ATM 23",2021,100,60,"En progreso","Mantenimiento lista de verificacion"],["ATM 25",2023,100,100,"Completado",null],["ATM 27",2023,100,100,"Completado",null],["ATM 28",2023,100,100,"Completado",null],["ATM 29",2023,100,100,"Completado",null],["ATM 31",2021,100,80,"En progreso","Mantenimiento del plan"],["ATM 32",2023,100,80,"En progreso","Mantenimiento del plan"],["ATM 34",2023,100,100,"Completado",null],["ATM 41",2023,100,0,"Retrasado","Stand by"],["CNS 01",2025,100,25,"En progreso","CORPAC completó la implementación en tierra. En curso: validación y pruebas con actores, en curso."],["CNS 02",2025,100,15,"En progreso","CORPAC ha iniciado el proceso de adquisición del sistema MLAT."],["CNS 05",2021,100,100,"Completado",null],["CNS 07",2026,90,100,"Completado",null],["CNS 08",2020,100,100,"Completado",null],["AIM 01",2023,100,24,"En progreso","CORPAC he enviado cronograma de implantacion."],["AIM 02",2023,100,1,"Stand by","Depende de la implantacion del AMQP en el AMHS nuevo"],["AIM 03",2024,100,1,"Stand by","Depende de la implantacion del AMQP en el AMHS nuevo"],["AIM 04",2024,100,1,"Stand by","Depende de la implantacion del AMQP en el AMHS nuevo"],["AIM 05",2023,100,1,"Stand by","Depende de la implantacion del AMQP en el AMHS nuevo"],["AIM 06",2024,100,1,"Stand by","Depende de la implantacion del AMQP en el AMHS nuevo"]]
-
-
-
-
-
-
-
+[
+  {
+    "ONR": "AOP 01",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "AOP 02",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 15,
+    "Estado actual": "En progreso",
+    "Observaciones": "CORPAC ha iniciado el proceso de adquisición del sistema A-SMGCS"
+  },
+  {
+    "ONR": "AOP 08",
+    "Fecha I.": 2022,
+    "Avance segun plan": 100,
+    "Avance real": 49,
+    "Estado actual": "En progreso",
+    "Observaciones": "Capacitación FMP Lima: se completó la inducción de la Fase 1 para todo el personal operativo. Pruebas y ajustes: se realizaron pruebas funcionales en la FMP Lima y se ajustó la plataforma de compartición según requerimientos ATFM. Gobernanza A-CDM: el jueves 18 de septiembre se efectuó la 15ª. reunión; se presentó el Manual de Procedimientos Fase 1 y se recabó retroalimentación de los interesados. Validación en Cusco: se ejecutaron pruebas preparatorias y una validación inicial de procedimientos en las dependencias ATC del aeropuerto."
+  },
+  {
+    "ONR": "AOP 09",
+    "Fecha I.": 2022,
+    "Avance segun plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
+    "Observaciones": "Se han iniciado coordinaciones con el FMU LIMA respecto del concepto ACDM y la funcion de dicha dependencia ATFM en el intercambio de informacion. Sin embargo los procedimientos operacionales estan pendientes de definicion ya  que estan relacionados a la definicion de procedimientos de la Fase 1 que se encuentra por definir."
+  },
+  {
+    "ONR": "AOP 11",
+    "Fecha I.": 2021,
+    "Avance segun plan": 100,
+    "Avance real": 60,
+    "Estado actual": "En progreso",
+    "Observaciones": "CORPAC (ANSP) coordina con LAP, AdP y AAP la implementación y seguimiento de sus SMS."
+  },
+  {
+    "ONR": "ATM 01",
+    "Fecha I.": 2024,
+    "Avance segun plan": 100,
+    "Avance real": 23,
+    "Estado actual": "En progreso",
+    "Observaciones": "Procedimientos: El 23% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades básicas (RNP APCH)."
+  },
+  {
+    "ONR": "ATM 02",
+    "Fecha I.": 2024,
+    "Avance segun plan": 100,
+    "Avance real": 74,
+    "Estado actual": "En progreso",
+    "Observaciones": "Procedimientos: El 74% de los aeródromos nacionales e internacionales que cuentan con pista de vuelo instrumental, cuentan con porcedimientos de aproximación PBN con capacidades avanzadas (RNP AR APCH)."
+  },
+  {
+    "ONR": "ATM 03",
+    "Fecha I.": 2024,
+    "Avance segun plan": 100,
+    "Avance real": 57,
+    "Estado actual": "En progreso",
+    "Observaciones": "Procedimientos: generación de cartas, simulación/validación y preparación de AIP. En curso la coordinación con ATC/operadores y la verificación de trayectorias."
+  },
+  {
+    "ONR": "ATM 04",
+    "Fecha I.": 2024,
+    "Avance segun plan": 100,
+    "Avance real": 7,
+    "Estado actual": "En progreso",
+    "Observaciones": "Procedimientos: generación de cartas, simulación/validación y preparación de AIP. En curso la coordinación con ATC/operadores y la verificación de trayectorias."
+  },
+  {
+    "ONR": "ATM 11",
+    "Fecha I.": 2025,
+    "Avance segun plan": 80,
+    "Avance real": 100,
+    "Estado actual": "Completado",
+    "Observaciones": "Suplemento publicado"
+  },
+  {
+    "ONR": "ATM 12",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 25,
+    "Estado actual": "En progreso",
+    "Observaciones": "Mantenimiento plan"
+  },
+  {
+    "ONR": "ATM 23",
+    "Fecha I.": 2021,
+    "Avance segun plan": 100,
+    "Avance real": 60,
+    "Estado actual": "En progreso",
+    "Observaciones": "Mantenimiento lista de verificacion"
+  },
+  {
+    "ONR": "ATM 25",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "ATM 27",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "ATM 28",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "ATM 29",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "ATM 31",
+    "Fecha I.": 2021,
+    "Avance segun plan": 100,
+    "Avance real": 80,
+    "Estado actual": "En progreso",
+    "Observaciones": "Mantenimiento del plan"
+  },
+  {
+    "ONR": "ATM 32",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 80,
+    "Estado actual": "En progreso",
+    "Observaciones": "Mantenimiento del plan"
+  },
+  {
+    "ONR": "ATM 34",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "ATM 41",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 0,
+    "Estado actual": "Retrasado",
+    "Observaciones": "Stand by"
+  },
+  {
+    "ONR": "CNS 01",
+    "Fecha I.": 2025,
+    "Avance segun plan": 100,
+    "Avance real": 25,
+    "Estado actual": "En progreso",
+    "Observaciones": "CORPAC completó la implementación en tierra. En curso: validación y pruebas con actores, en curso."
+  },
+  {
+    "ONR": "CNS 02",
+    "Fecha I.": 2025,
+    "Avance segun plan": 100,
+    "Avance real": 15,
+    "Estado actual": "En progreso",
+    "Observaciones": "CORPAC ha iniciado el proceso de adquisición del sistema MLAT."
+  },
+  {
+    "ONR": "CNS 05",
+    "Fecha I.": 2021,
+    "Avance segun plan": 100,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "CNS 07",
+    "Fecha I.": 2026,
+    "Avance segun plan": 90,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "CNS 08",
+    "Fecha I.": 2020,
+    "Avance segun plan": 100,
+    "Avance real": 100,
+    "Estado actual": "Completado"
+  },
+  {
+    "ONR": "AIM 01",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 24,
+    "Estado actual": "En progreso",
+    "Observaciones": "CORPAC he enviado cronograma de implantacion."
+  },
+  {
+    "ONR": "AIM 02",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
+  },
+  {
+    "ONR": "AIM 03",
+    "Fecha I.": 2024,
+    "Avance segun plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
+  },
+  {
+    "ONR": "AIM 04",
+    "Fecha I.": 2024,
+    "Avance segun plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
+  },
+  {
+    "ONR": "AIM 05",
+    "Fecha I.": 2023,
+    "Avance segun plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
+  },
+  {
+    "ONR": "AIM 06",
+    "Fecha I.": 2024,
+    "Avance segun plan": 100,
+    "Avance real": 1,
+    "Estado actual": "Stand by",
+    "Observaciones": "Depende de la implantacion del AMQP en el AMHS nuevo"
+  }
+]
