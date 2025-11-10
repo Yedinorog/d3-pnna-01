@@ -4,7 +4,7 @@
     "Fecha I.": 2023,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "Herramientas básicas de gestión de operaciones en tierra"
   },
   {
@@ -100,7 +100,7 @@
     "Fecha I.": 2023,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "STCA Alerta de conflicto de corto plazo"
   },
   {
@@ -108,7 +108,7 @@
     "Fecha I.": 2023,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "MSAW Advertencia de Altitud Mínima de Seguridad"            
   },
   {
@@ -116,7 +116,7 @@
     "Fecha I.": 2023,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "APW Vigilancia de la trayectoria de aproximación"            
   },
   {
@@ -124,7 +124,7 @@
     "Fecha I.": 2023,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "APM Vigilancia de la trayectoria de aproximación"            
   },
   {
@@ -148,7 +148,7 @@
     "Fecha I.": 2023,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "(SLOTs iniciales de aeródromo-ATFM e Interfaz de red)"            
   },
   {
@@ -180,7 +180,7 @@
     "Fecha I.": 2021,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "AMHS"    
   },
   {
@@ -188,7 +188,7 @@
     "Fecha I.": 2026,
     "Avance segun plan": 90,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "CPDLC"    
   },
   {
@@ -196,7 +196,7 @@
     "Fecha I.": 2020,
     "Avance segun plan": 100,
     "Avance real": 100,
-    "Estado actual": "Completado"
+    "Estado actual": "Completado",
     "Observaciones": "ADS-C"    
   },
   {
@@ -248,4 +248,5 @@
     "Observaciones": "(Suministro de procedimientos digitales de vuelgo) - Depende de la implantacion del AMHS interoperable"
   }
 ]
+
 
