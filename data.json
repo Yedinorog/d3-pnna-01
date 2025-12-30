@@ -27,9 +27,9 @@
     "ONR": "AOP 09",
     "Fecha I.": 2022,
     "Avance segun plan": 100,
-    "Avance real": 2,
+    "Avance real": 8,
     "Estado actual": "En progreso",
-    "Observaciones": "Se han consolidado las coordinaciones con el FMU LIMA respecto del concepto ACDM y la funcion de dicha dependencia ATFM en el intercambio de informacion. Se esta registrando información para la elaboración de los procedimientos operacionales."
+    "Observaciones": "Se ha transitado de las coordinaciones —reportadas hasta noviembre— hacia la ejecución operativa. Se consolidó la integracion funcional entre ATC Cusco y FMP Lima, habilitando el intercambio dinámico de TTOT y CTOT para gestionar slots en tiempo real. Se está revisando las métricas que permitan mostrar la gestión de la capacidad."
   },
   {
     "ONR": "AOP 11",
@@ -248,3 +248,4 @@
     "Observaciones": "( Suministro de procedimientos digitales de vuelo ) Depende de la implantacion del AMHS interoperable"
   }
 ]
+
