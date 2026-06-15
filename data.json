@@ -19,17 +19,17 @@
     "ONR": "AOP 08",
     "Fecha I.": 2022,
     "Avance segun plan": 100,
-    "Avance real": 49,
+    "Avance real": 60,
     "Estado actual": "En progreso",
-    "Observaciones": "Se ejecutaron ejercicios de validación y refuerzo de capacidades, con pruebas internas orientadas a mejorar la funcionalidad y la presentación de la información por perfil de usuario; se impartió una segunda capacitación al FMP Lima con repaso de procedimientos ATFM; y, pese a la reprogramación del hito preoperacional, se realizaron pruebas preparatorias presenciales del 17 al 21 de noviembre para verificar conectividad, coordinación TWR–APP–FMP y atención a aerolíneas. Finalmente, se inició el análisis de resultados y el mantenimiento de itinerarios de diciembre."
+    "Observaciones": "Fase de pruebas preoperacionales (Fase 1) enfocada en la validación operativa del intercambio de información A-CDM mediante monitoreo diario. Incluye el cumplimiento del SUP 03/2026, la aplicación del horario ampliado de pruebas, la carga de itinerarios y el control de procedimientos por parte del personal ATC."
   },
   {
     "ONR": "AOP 09",
     "Fecha I.": 2022,
     "Avance segun plan": 100,
-    "Avance real": 8,
+    "Avance real": 12,
     "Estado actual": "En progreso",
-    "Observaciones": "Se ha transitado de las coordinaciones —reportadas hasta noviembre— hacia la ejecución operativa. Se consolidó la integracion funcional entre ATC Cusco y FMP Lima, habilitando el intercambio dinámico de TTOT y CTOT para gestionar slots en tiempo real. Se está revisando las métricas que permitan mostrar la gestión de la capacidad."
+    "Observaciones": "Fase de integración operativa orientada al acoplamiento gradual entre la operación local A-CDM Cusco y la gestión ATFM / red ATM. Contempla la coordinación de horarios de prueba, el seguimiento de salidas y la preparación de información para una futura integración estructurada con la red."
   },
   {
     "ONR": "AOP 11",
