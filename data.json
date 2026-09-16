@@ -19,7 +19,7 @@
     "ONR": "AOP 08",
     "Fecha I.": 2022,
     "Avance segun plan": 100,
-    "Avance real": 60,
+    "Avance real": 63,
     "Estado actual": "En progreso",
     "Observaciones": "Fase de pruebas preoperacionales (Fase 1) enfocada en la validación operativa del intercambio de información A-CDM mediante monitoreo diario. Incluye el cumplimiento del SUP 03/2026, la aplicación del horario ampliado de pruebas, la carga de itinerarios y el control de procedimientos por parte del personal ATC."
   },
@@ -203,7 +203,7 @@
     "ONR": "AIM 01",
     "Fecha I.": 2023,
     "Avance segun plan": 100,
-    "Avance real": 30,
+    "Avance real": 50,
     "Estado actual": "En progreso",
     "Observaciones": "( Sistema de Calidad para eAIP ) CORPAC ha enviado cronograma de implantacion."
   },
@@ -211,7 +211,7 @@
     "ONR": "AIM 02",
     "Fecha I.": 2023,
     "Avance segun plan": 100,
-    "Avance real": 1,
+    "Avance real": 25,
     "Estado actual": "Stand by",
     "Observaciones": "( Publicación eAIP digital ) Depende de la implantacion del AMHS interoperable"
   },
@@ -219,7 +219,7 @@
     "ONR": "AIM 03",
     "Fecha I.": 2024,
     "Avance segun plan": 100,
-    "Avance real": 1,
+    "Avance real": 10,
     "Estado actual": "Stand by",
     "Observaciones": "( Suministro datos del terreno ) Depende de la implantacion del AMHS interoperable"
   },
@@ -235,7 +235,7 @@
     "ONR": "AIM 05",
     "Fecha I.": 2023,
     "Avance segun plan": 100,
-    "Avance real": 1,
+    "Avance real": 20,
     "Estado actual": "Stand by",
     "Observaciones": "( Suministro de cartografía digital de aeródromos ) Depende de la implantacion del AMHS interoperable"
   },
